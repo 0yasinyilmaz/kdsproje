@@ -1,0 +1,40 @@
+/* Reset ve temel stiller */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+/* Form elementleri için temel stiller */
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+/* Responsive görüntü stilleri */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Liste stilleri */
+ul, ol {
+    list-style: none;
+}
+
+/* Link stilleri */
+a {
+    text-decoration: none;
+    color: inherit;
+} 

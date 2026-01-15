@@ -1,0 +1,237 @@
+/* Harita container */
+.map-container {
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+}
+
+/* SVG harita */
+#turkiye-haritasi {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* İl path stilleri */
+#turkiye-haritasi path {
+    fill: #f0f0f0;
+    stroke: #333;
+    stroke-width: 0.3;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    transform: scale(1);
+}
+
+#turkiye-haritasi path:hover:not(.selected) {
+    fill: #e6f0ff;
+    stroke-width: 0.5;
+}
+
+#turkiye-haritasi path.selected {
+    fill: var(--primary-color);
+    stroke: #000;
+    stroke-width: 0.5;
+}
+
+/* Servis noktası işaretleri */
+.servis-marker {
+    fill: var(--primary-color);
+    stroke: white;
+    stroke-width: 2;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    width: 12px;
+    height: 12px;
+}
+
+.servis-marker:hover {
+    width: 16px;
+    height: 16px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+/* Servis sayısı göstergesi */
+.servis-count-circle {
+    pointer-events: none;
+    transform-origin: center;
+}
+
+.servis-count-circle .count-circle-bg {
+    fill: var(--primary-color);
+    opacity: 0.95;
+    width: 24px;
+    height: 24px;
+}
+
+.servis-count-circle .count-text {
+    fill: white;
+    font-size: 12px;
+    text-anchor: middle;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+    font-weight: bold;
+    filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.3));
+}
+
+/* Harita kontrolleri */
+.map-controls {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.map-control-btn {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.map-control-btn:hover {
+    background: #f8fafc;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Zoom kontrolleri */
+.zoom-controls {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    z-index: 10;
+}
+
+.zoom-btn {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+}
+
+.zoom-btn:hover {
+    background: #f8fafc;
+    color: var(--primary-color);
+}
+
+/* İl bilgi kutusu */
+.il-info-box {
+    position: absolute;
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: 1rem;
+    min-width: 200px;
+    z-index: 20;
+    display: none;
+}
+
+.il-info-box.show {
+    display: block;
+}
+
+.il-info-title {
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.il-info-content {
+    font-size: 0.875rem;
+    color: var(--text-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .map-container {
+        height: 400px;
+        padding: 1rem;
+    }
+
+    .servis-marker {
+        width: 8px;
+        height: 8px;
+    }
+
+    .servis-marker:hover {
+        width: 12px;
+        height: 12px;
+    }
+
+    .servis-count-circle .count-circle-bg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .servis-count-circle .count-text {
+        font-size: 10px;
+    }
+}
+
+/* Yıllık satış listesi stilleri */
+.yillik-satislar {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+.yillik-satislar h5 {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.yillik-satis-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.yillik-satis-item label {
+    font-weight: normal;
+    color: var(--text-color);
+}
+
+.yillik-satis-item span {
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.no-data, .error {
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.error {
+    color: var(--danger-color);
+} 

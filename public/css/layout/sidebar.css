@@ -1,0 +1,27 @@
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    background: white;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    transition: width var(--transition-normal) ease;
+    z-index: 9998;
+    padding-right: 28px;
+}
+
+.sidebar.collapsed {
+    width: 72px;
+}
+
+/* Logo stilleri */
+.logo {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 

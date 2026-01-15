@@ -1,0 +1,917 @@
+@import 'base/variables.css';
+@import 'base/reset.css';
+@import 'base/typography.css';
+@import 'base/utilities.css';
+
+@import 'layout/sidebar.css';
+@import 'layout/header.css';
+@import 'layout/grid.css';
+@import 'layout/responsive.css';
+
+@import 'components/buttons.css';
+@import 'components/cards.css';
+@import 'components/tables.css';
+@import 'components/modals.css';
+@import 'components/tooltips.css';
+
+@import 'features/charts.css';
+@import 'features/maps.css';
+@import 'features/slider.css';
+
+@import 'pages/welcome.css';
+@import 'pages/dashboard.css';
+@import 'pages/reports.css';
+
+/* Ana sayfa yapısı */
+.dashboard-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.content {
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Birimler sayfası düzeni */
+#birimler {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-header {
+    padding: 20px;
+    flex-shrink: 0;
+}
+
+/* 2x2 Grid düzeni - üst kısım daha az yükseklikte */
+.birimler-page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Üst kısım için yeni container */
+.top-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    min-height: 500px;
+}
+
+/* Harita container stilleri */
+.full-width-map {
+    flex: 1;
+    min-width: 0;
+}
+
+.full-width-map .map-container {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+}
+
+/* İl bilgileri tablosu için */
+.top-row .table-column {
+    min-height: 500px;
+}
+
+/* Harita için özel stil */
+#turkiye-haritasi {
+    width: 100%;
+    height: 100%;
+}
+
+/* Alt kısım için mevcut tables-row stili */
+.tables-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.table-column {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Responsive tasarım için */
+@media (max-width: 1200px) {
+    .top-row,
+    .tables-row {
+        flex-direction: column;
+    }
+    
+    .table-column {
+        width: 100%;
+    }
+}
+
+/* Tüm tablolar için ortak stiller */
+.table-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.table-header {
+    padding: 15px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    flex-shrink: 0;
+}
+
+.table-content {
+    flex: 1;
+    overflow: auto;
+    padding: 15px;
+}
+
+/* İl bilgileri içeriği için özel stiller */
+.il-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.info-item label {
+    font-weight: 600;
+    color: #666;
+}
+
+.info-item span {
+    color: #333;
+}
+
+.yillik-satislar {
+    margin-top: 20px;
+}
+
+.yillik-satislar h5 {
+    margin-bottom: 15px;
+    color: #444;
+}
+
+#yillik-satis-listesi {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Servis listesi - sol alt */
+.servis-list-container {
+    grid-column: 1;
+    grid-row: 2;
+    min-height: 450px; /* Alt bölüm için artırılmış minimum yükseklik */
+}
+
+/* Servis istatistikleri - sağ alt */
+.servis-stats-container {
+    grid-column: 2;
+    grid-row: 2;
+    min-height: 450px; /* Alt bölüm için artırılmış minimum yükseklik */
+}
+
+/* DataTables özelleştirmeleri */
+.dataTables_wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dataTables_scroll {
+    flex: 1;
+    min-height: 0;
+}
+
+.dataTables_filter,
+.dataTables_length,
+.dt-buttons {
+    padding: 10px;
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .birimler-page-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    
+    .servis-stats-container {
+        grid-column: 1;
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Diğer tablolar için yükseklik sınırlaması */
+.servis-list-container .table-content,
+.servis-stats-container .table-content {
+    max-height: 600px;
+}
+
+/* DataTables özel stilleri */
+.table-content .dataTables_wrapper {
+    padding: 0;
+}
+
+/* Tablo hücrelerinin boyutlarını küçült */
+table.dataTable {
+    margin: 0 !important;
+}
+
+table.dataTable thead th, 
+table.dataTable thead td,
+table.dataTable tbody td {
+    padding: 8px 10px !important;
+    font-size: 14px;
+}
+
+/* Arama, sayfalama ve gösterilen kayıt sayısı alanlarını düzenle */
+.dataTables_filter,
+.dataTables_length,
+.dataTables_info,
+.dataTables_paginate {
+    font-size: 13px;
+    padding: 8px !important;
+}
+
+/* Sayfalama butonlarını küçült */
+.dataTables_paginate .paginate_button {
+    padding: 0.3em 0.8em !important;
+}
+
+/* Tablo başlıklarını düzenle */
+table.dataTable thead th {
+    font-weight: 600;
+    background-color: #f8f9fa;
+}
+
+/* İşlemler sütununu düzenle */
+table.dataTable td:last-child {
+    white-space: nowrap;
+    width: 100px;
+}
+
+/* Tablo satır yüksekliğini ayarla */
+table.dataTable tr {
+    height: 40px;
+}
+
+/* Tablo başlığında buton için düzenleme */
+.header-with-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.header-with-button h3 {
+    margin: 0;
+    order: 1;
+}
+
+.header-with-button .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    order: 2;
+}
+
+/* Tüm İller butonu için özel stil */
+#tumIllerBtn {
+    white-space: nowrap;
+}
+
+#tumIllerBtn i {
+    margin-right: 5px;
+}
+
+/* DataTables içindeki butonlar için stil */
+.table-content .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1.2;
+}
+
+/* İşlemler sütunu için özel stil */
+#servislerTable td:last-child {
+    white-space: nowrap;
+    width: 100px;
+    text-align: center;
+}
+
+/* Sil butonu için özel stil */
+#servislerTable .btn-danger {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.75rem;
+}
+
+#servislerTable .btn-danger i {
+    font-size: 0.75rem;
+    margin-right: 2px;
+}
+
+/* DataTables genel hücre boyutları */
+#servislerTable td {
+    padding: 0.5rem 0.75rem;
+    vertical-align: middle;
+}
+
+/* Analiz Haritası Stilleri */
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    padding: 15px;
+}
+
+#analiz-haritasi {
+    width: 100%;
+    height: 100%;
+    background: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#analiz-haritasi svg {
+    width: 100%;
+    height: 100%;
+    max-height: 470px;
+    object-fit: contain;
+}
+
+/* SVG path stilleri */
+#analiz-haritasi path {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    fill: #f0f0f0;
+    stroke: #fff;
+    stroke-width: 1;
+}
+
+#buyuk-analiz-harita {
+    width: 100%;
+    height: 100%;
+}
+
+#buyuk-analiz-harita svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Harita hover efektleri */
+#analiz-haritasi path,
+#buyuk-analiz-harita path {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#analiz-haritasi path:hover,
+#buyuk-analiz-harita path:hover {
+    opacity: 0.7;
+}
+
+.harita-legend {
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+    font-size: 12px;
+}
+
+.legend-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin: 3px 0;
+}
+
+.color-box {
+    width: 15px;
+    height: 15px;
+    margin-right: 8px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 2px;
+}
+
+/* Bölge Karşılaştırma Stilleri */
+.bolge-karsilastirma-controls {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    margin: 10px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    width: 100%;
+}
+
+.bolge-tickbar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start; /* Sol taraftan başlat */
+    gap: 8px;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.bolge-tick {
+    position: relative;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 160px; /* Genişliği artırdık */
+}
+
+/* Özel genişlikler */
+.bolge-tick[data-bolge="GÜNEYDOĞU ANADOLU"],
+.bolge-tick[data-bolge="DOĞU ANADOLU"] {
+    width: 180px; /* Daha uzun isimli bölgeler için extra genişlik */
+}
+
+.bolge-tick:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.bolge-tick input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.bolge-tick label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    cursor: pointer;
+    font-size: 0.9rem; /* Font boyutunu biraz artırdık */
+    color: #495057;
+    font-weight: 500;
+    width: 100%;
+    white-space: nowrap;
+    padding: 0 5px; /* İçeriğe biraz padding ekledik */
+}
+
+.bolge-tick label:before {
+    content: '';
+    width: 22px;
+    height: 22px;
+    border: 2px solid #dee2e6;
+    border-radius: 6px;
+    background: white;
+    transition: all 0.2s ease;
+}
+
+.bolge-tick input[type="checkbox"]:checked + label:before {
+    background: #2196F3;
+    border-color: #2196F3;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+    background-size: 14px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bolge-tick input[type="checkbox"]:checked ~ .bolge-tick {
+    border-color: #2196F3;
+    background: #E3F2FD;
+}
+
+/* Karşılaştır butonu */
+#karsilastir-btn {
+    margin: 8px 0 0 8px; /* Sol tarafa hizala */
+    padding: 6px 16px;
+    height: 32px;
+    min-width: 120px;
+    font-size: 0.85rem;
+}
+
+#karsilastir-btn:hover {
+    background: #1976D2;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);
+}
+
+#karsilastir-btn:active {
+    transform: translateY(0);
+}
+
+#karsilastir-btn i {
+    font-size: 1.2rem;
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 992px) {
+    .bolge-tickbar {
+        grid-template-columns: repeat(3, 1fr); /* 3 sütun */
+    }
+}
+
+@media (max-width: 768px) {
+    .bolge-tickbar {
+        grid-template-columns: repeat(2, 1fr); /* 2 sütun */
+    }
+}
+
+@media (max-width: 480px) {
+    .bolge-tickbar {
+        grid-template-columns: 1fr; /* 1 sütun */
+    }
+}
+
+/* Karşılaştırma sonuçları grid düzeni */
+#karsilastirma-sonuclari {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Grafikler bölümü */
+#bolge-grafikleri {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    width: 100%;
+}
+
+.chart-container {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-container canvas {
+    flex: 1;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 350px;
+}
+
+/* Sekme yapısı */
+.kds-tabs {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.kds-tab {
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: #666;
+}
+
+.kds-tab.active {
+    background: #2196F3;
+    color: white;
+}
+
+.kds-tab-content {
+    display: none;
+}
+
+.kds-tab-content.active {
+    display: block;
+}
+
+/* Detay kartları */
+#bolge-detaylari {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.bolge-detay-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+    transition: all 0.2s ease;
+}
+
+.bolge-detay-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.bolge-detay-card h3 {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.performans-seviyesi {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: auto;
+}
+
+.performans-seviyesi.mükemmel {
+    background-color: #dff7e8;
+    color: #28a745;
+}
+
+.performans-seviyesi.yeterli {
+    background-color: #e3f2fd;
+    color: #0d6efd;
+}
+
+.performans-seviyesi.geliştirilmeli {
+    background-color: #fff3cd;
+    color: #997404;
+}
+
+.performans-seviyesi.yetersiz {
+    background-color: #f8d7da;
+    color: #dc3545;
+}
+
+.performans-seviyesi.servis-yok {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.metrikler {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.metrik {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 12px 15px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.metrik:hover {
+    border-color: #e9ecef;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.metrik label {
+    font-size: 0.75rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+}
+
+.metrik span {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* Scrollbar stilleri */
+#bolge-detaylari::-webkit-scrollbar {
+    width: 8px;
+}
+
+#bolge-detaylari::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+#bolge-detaylari::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+#bolge-detaylari::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 1400px) {
+    .metrikler {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .metrikler {
+        grid-template-columns: 1fr;
+    }
+    
+    .metrik {
+        padding: 10px;
+    }
+    
+    .metrik span {
+        font-size: 1rem;
+    }
+}
+
+/* Tooltip stilleri */
+.metrik-tooltip {
+    position: relative;
+}
+
+.metrik-tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 1600px) {
+    #bolge-grafikleri {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 1200px) {
+    #bolge-grafikleri {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 992px) {
+    .content-wrapper {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .kds-container {
+        padding: 10px;
+    }
+    
+    .kds-card-content {
+        padding: 15px;
+    }
+}
+
+/* Ana içerik alanı düzeni */
+.content-wrapper {
+    margin-left: 250px; /* Sidebar genişliği */
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    padding: 0;
+}
+
+/* KDS container ve kart stilleri */
+.kds-container {
+    padding: 20px;
+    width: 100%;
+    max-width: none;
+}
+
+.kds-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.kds-card.mt-4 {
+    margin-top: 1rem !important;
+    width: 100%;
+    max-width: none !important; /* Bootstrap override */
+}
+
+.kds-card-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+}
+
+.kds-card-content {
+    padding: 25px;
+    width: 100%;
+}
+
+/* Simülasyon sonuçları tablosu için */
+.simulation-results {
+    margin-top: 20px;
+    margin-bottom: 0; /* Alt boşluğu kaldır */
+}
+
+.kds-table {
+    margin-bottom: 0; /* Tablo alt boşluğunu kaldır */
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 992px) {
+    .kds-container {
+        padding: 10px;
+    }
+    
+    .kds-card-content {
+        padding: 15px;
+    }
+}
+
+/* Scrollbar stilleri */
+.bolge-tickbar::-webkit-scrollbar {
+    height: 6px;
+}
+
+.bolge-tickbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.bolge-tickbar::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.bolge-tickbar::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 1200px) {
+    .bolge-tick {
+        min-width: 130px;
+        max-width: 130px;
+        padding: 10px 12px;
+    }
+    
+    .bolge-tick label {
+        font-size: 0.85rem;
+    }
+}

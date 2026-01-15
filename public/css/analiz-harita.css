@@ -1,0 +1,268 @@
+.tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.lejant {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.lejant-item {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.renk-kutu {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+#harita-container {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    margin-bottom: 20px;
+}
+
+#analiz-haritasi {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#analiz-haritasi svg {
+    width: 100%;
+    height: 100%;
+    max-height: 70vh;
+    object-fit: cover;
+    display: block;
+}
+
+#analiz-haritasi svg path {
+    stroke: #000;
+    stroke-width: 0.3;
+    transition: fill 0.3s ease;
+}
+
+#analiz-haritasi svg path:hover {
+    opacity: 0.8;
+    cursor: pointer;
+    stroke-width: 0.5;
+}
+
+#harita-container path {
+    transition: fill 0.3s ease;
+}
+
+#harita-container path:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.map-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1001;
+}
+
+.harita-legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    position: relative;
+}
+
+.legend-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.color-box {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.satis-legend {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 200px;
+}
+
+.satis-legend .legend-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.satis-legend .legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.satis-legend .color-box {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#turkiye-haritasi {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#turkiye-haritasi svg {
+    position: relative;
+    z-index: 1;
+}
+
+.satis-legend {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 200px;
+}
+
+.content-body {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 150px);
+    padding: 20px;
+}
+
+/* Tam ekran modu için stiller */
+#analizHaritaModal .modal-body {
+    height: calc(100vh - 56px);
+    padding: 0;
+    background: #fff;
+}
+
+#buyuk-analiz-harita {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+}
+
+#buyuk-analiz-harita svg {
+    width: 100%;
+    height: 100%;
+    max-width: 100vw;
+    max-height: 100vh;
+    object-fit: cover;
+}
+
+#buyuk-analiz-harita svg path {
+    stroke: #000;
+    stroke-width: 0.3;
+    transition: fill 0.3s ease;
+}
+
+#buyuk-analiz-harita svg path:hover {
+    opacity: 0.8;
+    cursor: pointer;
+    stroke-width: 0.5;
+}
+
+/* Tam ekran harita stilleri */
+.fullscreen-map {
+    width: 100%;
+    height: calc(100vh - 60px); /* Modal header yüksekliğini çıkar */
+    background: #f8fafc;
+}
+
+/* Modal düzenlemeleri */
+#analizHaritaModal .modal-content {
+    background: #f8fafc;
+}
+
+#analizHaritaModal .modal-header {
+    background: white;
+    border-bottom: 1px solid #e5e9f2;
+    padding: 1rem 1.5rem;
+}
+
+#analizHaritaModal .modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a2b4c;
+}
+
+#analizHaritaModal .modal-body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Harita içeriği için SVG düzenlemeleri */
+#buyuk-analiz-harita svg {
+    width: 100%;
+    height: 100%;
+    max-height: none !important;
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 768px) {
+    .fullscreen-map {
+        height: calc(100vh - 56px); /* Mobilde header daha küçük */
+    }
+} 

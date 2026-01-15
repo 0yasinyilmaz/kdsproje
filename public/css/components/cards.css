@@ -1,0 +1,110 @@
+/* Temel kart stili */
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+/* Kart başlığı */
+.card-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #dee2e6;
+    background: #f8f9fa;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Kart içeriği */
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Tablo içeren kartlar için özel stil */
+.card .table-container {
+    margin: -1.5rem;
+    padding: 0;
+    box-shadow: none;
+}
+
+.card .table-container .table {
+    margin: 0;
+}
+
+/* DataTables özelleştirmeleri */
+.card .dataTables_wrapper {
+    padding: 0;
+}
+
+.card .dataTables_wrapper .dataTables_length,
+.card .dataTables_wrapper .dataTables_filter {
+    padding: 1rem 1.5rem;
+}
+
+.card .dataTables_wrapper .dataTables_info,
+.card .dataTables_wrapper .dataTables_paginate {
+    padding: 1rem 1.5rem;
+}
+
+/* İstatistik kartı */
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(207, 14, 14, 0.1);
+    color: var(--primary-color);
+}
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-color);
+}
+
+/* Hover efektleri */
+.card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card {
+        padding: 1rem;
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .stat-value {
+        font-size: 1.25rem;
+    }
+} 

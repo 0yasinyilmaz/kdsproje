@@ -1,0 +1,23 @@
+:root {
+    /* Renkler */
+    --primary-color: #CF0E0E;
+    --primary-hover: #a30b0b;
+    --secondary-color: #1a2b4c;
+    --text-color: #64748b;
+    --border-color: #e2e8f0;
+    
+    /* Gölgeler */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+    
+    /* Border radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    
+    /* Geçiş süreleri */
+    --transition-fast: 0.2s;
+    --transition-normal: 0.3s;
+    --transition-slow: 0.5s;
+} 

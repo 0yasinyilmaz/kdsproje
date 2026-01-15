@@ -1,0 +1,95 @@
+/* Genel responsive düzenlemeler */
+@media (max-width: 1400px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        max-width: 720px;
+    }
+
+    /* Sidebar responsive */
+    .sidebar {
+        width: 240px;
+    }
+
+    .content {
+        margin-left: 240px;
+    }
+
+    .sidebar.collapsed + .content {
+        margin-left: 72px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 540px;
+    }
+
+    /* Mobile sidebar */
+    .sidebar {
+        transform: translateX(-100%);
+        z-index: 1000;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    /* Header responsive */
+    .header {
+        padding: 0.75rem 1rem;
+    }
+
+    .header-title {
+        font-size: 1.25rem;
+    }
+
+    /* Grid responsive */
+    .grid-container {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    /* Tablo responsive */
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Print styles */
+@media print {
+    .sidebar,
+    .header,
+    .no-print {
+        display: none !important;
+    }
+
+    .content {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+} 

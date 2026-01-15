@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chery Servis Ağı Karar Destek Sistemi</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/analiz-harita.css">
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log("Sayfa yüklendi");
+      
+      const menuItems = document.querySelectorAll('.menu-item');
+      const pages = document.querySelectorAll('.page');
+      const sidebarToggle = document.getElementById('sidebarToggle');
+      const sidebar = document.querySelector('.sidebar');
+      const content = document.querySelector('.content');
+
+      function initializeCharts() {
+        if (typeof initializeDashboardCharts === 'function') {
+          initializeDashboardCharts();
+        }
+      }
+
+      function showPage(pageId) {
+        pages.forEach(page => {
+          page.style.display = 'none';
+        });
+        
+        const selectedPage = document.getElementById(pageId);
+        if (selectedPage) {
+          selectedPage.style.display = 'block';
+          if (pageId === 'raporlar') {
+            initializeCharts();
+          }
+        }
+        
+        menuItems.forEach(item => item.classList.remove('active'));
+        const activeItem = document.querySelector(`[data-page="${pageId}"]`);
+        if (activeItem) {
+          activeItem.classList.add('active');
+        }
+      }
+
+      menuItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          const pageId = item.dataset.page;
+          showPage(pageId);
+        });
+      });
+
+      sidebarToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+        content.classList.toggle('sidebar-collapsed');
+      });
+      showPage('welcome');
+      setTimeout(initializeCharts, 100);
+    });
+  </script>
+</head>
+<body>
+  <div class="dashboard-container">
+    <div class="sidebar">
+      <button id="sidebarToggle" class="sidebar-toggle">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="logo">
+        <a href="#" class="logo-link" onclick="showPage('welcome'); return false;">
+          <img src="chery-logo.png" alt="Chery Logo" class="normal-logo">
+          <span class="chery-text">CHERY</span>
+        </a>
+      </div>
+      <nav class="menu">
+        <div class="menu-category">Analiz & Raporlar</div>
+        <a href="#" class="menu-item" data-page="raporlar">
+          <i class="fas fa-chart-bar"></i>
+          <span>Performans Analizi</span>
+        </a>
+        <a href="#" class="menu-item" data-page="satislar">
+          <i class="fas fa-chart-line"></i>
+          <span>Satış Analizi</span>
+        </a>
+        <a href="#" class="menu-item" data-page="kds">
+          <i class="fas fa-brain"></i>
+          <span>Karar Destek Sistemi</span>
+        </a>
+        <div class="menu-category">Servis Yönetimi</div>
+        <a href="#" class="menu-item" data-page="birimler">
+          <i class="fas fa-map-marked-alt"></i>
+          <span>Servis Ağı Analizi</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="content">
+      <div id="welcome" class="page" style="display: block;">
+        <div class="welcome-container">
+          <div class="welcome-content">
+            <img src="/chery-logo.png" alt="Chery Logo" class="welcome-logo">
+            <h1>Chery Servis Ağı Karar Destek Sistemi</h1>
+            <p class="welcome-description">
+                Veri odaklı karar verme süreçleri ile Türkiye genelindeki teknik servis ağını optimize eden, 
+                geleceğe yönelik planlamalar sunan ve taktiksel kararları destekleyen akıllı yönetim platformu
+            </p>
+            
+            <div class="welcome-features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Akıllı Karar Desteği</h3>
+                    <p>Veri analitiği destekli karar önerileri</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Performans Analizi</h3>
+                    <p>Servis ağı performansının detaylı analizi ve optimizasyonu</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Stratejik Planlama</h3>
+                    <p>Servis lokasyonları için akıllı simülasyon ve öneriler</p>
+                </div>
+            </div>
+            
+            <div class="welcome-slider">
+              <div class="slider-container">
+                <div class="slide">
+                  <img src="/slider/dashboard.png" alt="Dashboard">
+                  <h3>Kapsamlı Dashboard</h3>
+                  <p>Tüm önemli metrikleri tek ekranda görüntüleyin</p>
+                </div>
+                <div class="slide">
+                  <img src="/slider/analysis.png" alt="Analiz">
+                  <h3>Detaylı Analizler</h3>
+                  <p>İnteraktif grafikler ve tablolarla derinlemesine analiz yapın</p>
+                </div>
+                <div class="slide">
+                  <img src="/slider/simulation.png" alt="Simülasyon">
+                  <h3>Gelecek Planlaması</h3>
+                  <p>Simülasyonlarla geleceğe yönelik kararlar alın</p>
+                </div>
+              </div>
+              <div class="slider-nav">
+                <button class="nav-dot active" data-slide="0"></button>
+                <button class="nav-dot" data-slide="1"></button>
+                <button class="nav-dot" data-slide="2"></button>
+              </div>
+            </div>
+            
+            <div class="welcome-actions">
+              <button onclick="showPage('raporlar')" class="welcome-btn primary">
+                <i class="fas fa-chart-bar"></i>
+                Keşfetmeye Başla             
+                <i class="fab fa-github"></i>
+                Proje Detayları
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="raporlar" class="page" style="display: none;">
+        <div class="content-header">
+          <h1>Raporlar</h1>
+        </div>
+        <div class="report-container">
+          <div class="info-cards">
+            <div class="info-card">
+              <div class="info-card-content">
+                <div class="info-card-title">
+                  <h4>Toplam Satış</h4>
+                </div>
+                <div class="info-card-value">
+                  <i class="fas fa-shopping-cart"></i>
+                  <span id="toplamSatis">-</span>
+                </div>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-content">
+                <div class="info-card-title">
+                  <h4>Yıllık Toplam Satış</h4>
+                  <select id="yilSecimi" class="form-select form-select-sm">
+                    <option value="2023">2023</option>
+                  </select>
+                </div>
+                <div class="info-card-value">
+                  <i class="fas fa-chart-line"></i>
+                  <span id="yillikToplamSatis">-</span>
+                </div>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-content">
+                <div class="info-card-title">
+                  <h4>Toplam Teknik Servis</h4>
+                </div>
+                <div class="info-card-value">
+                  <i class="fas fa-tools"></i>
+                  <span id="toplamServis">-</span>
+                </div>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-content">
+                <div class="info-card-title">
+                  <h4>Ortalama Servis Skoru</h4>
+                </div>
+                <div class="info-card-value">
+                  <i class="fas fa-star"></i>
+                  <span id="ortalamaServisSkor">-</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="chart-row">
+            <div class="chart-container">
+              <canvas id="bolgeselSatislar"></canvas>
+            </div>
+            <div class="chart-container">
+              <canvas id="bolgeselPasta"></canvas>
+            </div>
+          </div>
+          <div class="chart-row">
+            <div class="chart-container">
+              <canvas id="top10Iller"></canvas>
+            </div>
+            <div class="chart-container">
+              <canvas id="bolgeselServisPasta"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="satislar" class="page" style="display: none;">
+        <div class="content-header">
+          <h1>Satışlar</h1>
+        </div>
+        <div class="sales-container">
+          <div class="table-container">
+            <div class="table-header">
+              <h3>Tüm Satışlar</h3>
+            </div>
+            <table id="satislarTable" class="display"></table>
+          </div>
+          <div class="table-container">
+            <div class="table-header">
+              <h3>Bölgesel Özet</h3>
+            </div>
+            <table id="bolgeselOzetTable" class="display"></table>
+          </div>
+        </div>
+      </div>
+
+      <div id="birimler" class="page" style="display: none;">
+        <div class="content-header">
+          <div class="header-container">
+            <h1>Teknik Servisler</h1>
+            <div class="servis-ekle-container">
+              <button type="button" class="yeni-servis-btn" data-bs-toggle="modal" data-bs-target="#yeniServisModal">
+                <i class="fas fa-plus"></i>
+                Yeni Teknik Servis Ekle
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="birimler-page-content">
+          <div class="top-row">
+            <div class="full-width-map">
+              <div class="map-container">
+                <div class="map-header">
+                  <button type="button" class="btn btn-light btn-sm harita-buyut" data-bs-toggle="modal" data-bs-target="#haritaModal">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div id="turkiye-haritasi"></div>
+              </div>
+            </div>
+
+            <div class="table-column">
+              <div class="table-container">
+                <div class="table-header">
+                  <div class="header-with-button">
+                    <h3>İl Bilgileri</h3>
+                    <button type="button" class="btn btn-primary btn-sm" id="tumIllerBtn">
+                      <i class="fas fa-city"></i>
+                      Tüm İller
+                    </button>
+                  </div>
+                </div>
+                <div class="table-content">
+                  <div class="il-info">
+                    <div class="info-item">
+                      <label>Seçili İl:</label>
+                      <span id="secili-il">-</span>
+                    </div>
+                    <div class="info-item">
+                      <label>Teknik Servis Sayısı:</label>
+                      <span id="servis-sayisi">-</span>
+                    </div>
+                    <div class="info-item">
+                      <label>Toplam Satış:</label>
+                      <span id="satis-sayisi">-</span>
+                    </div>
+                    <div class="yillik-satislar">
+                      <h5>Yıllara Göre Satışlar</h5>
+                      <div id="yillik-satis-listesi">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tables-row">
+            <div class="table-column">
+              <div class="table-container">
+                <div class="table-header">
+                  <h3>Teknik Servis Listesi</h3>
+                </div>
+                <div class="table-content">
+                  <table id="servislerTable" class="display">
+                    <thead>
+                      <tr>
+                        <th class="sorting">Servis Adı</th>
+                        <th class="sorting">İl</th>
+                        <th class="sorting">İlçe</th>
+                        <th class="no-sort">İşlemler</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="table-column">
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Servis İstatistikleri</h3>
+                    </div>
+                    <div class="table-content">
+                        <table id="servisIstatistikleriTable" class="display">
+                        </table>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="modeller" class="page" style="display: none;">
+        <div class="content-header">
+          <h1>Modeller</h1>
+        </div>
+        <div class="models-container">
+        </div>
+      </div>
+
+      <div class="page" id="dashboard">
+      </div>
+
+      <div id="il-analiz" class="page" style="display: none;">
+        <div class="content-header">
+            <div class="header-container">
+                <h1>İl Bazlı Servis Analizi</h1>
+                <button type="button" class="btn btn-primary" id="geriDonBtn">
+                    <i class="fas fa-arrow-left"></i>
+                    Servis Ağına Dön
+                </button>
+            </div>
+        </div>
+        <div class="content-body">
+            <div id="harita-container">
+                <div class="map-controls">
+                    <button type="button" class="btn btn-light btn-sm harita-buyut" data-bs-toggle="modal" data-bs-target="#analizHaritaModal">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+                <div id="analiz-haritasi"></div>
+            </div>
+            <div class="harita-legend">
+                <div class="legend-item">
+                    <span class="color-box" style="background: #d32f2f;"></span>
+                    <span>Mükemmel</span>
+                </div>
+                <div class="legend-item">
+                    <span class="color-box" style="background: #ff8a80;"></span>
+                    <span>Yeterli</span>
+                </div>
+                <div class="legend-item">
+                    <span class="color-box" style="background: #5c6bc0;"></span>
+                    <span>Geliştirilmeli</span>
+                </div>
+                <div class="legend-item">
+                    <span class="color-box" style="background: #9fa8da;"></span>
+                    <span>Yetersiz</span>
+                </div>
+                <div class="legend-item">
+                    <span class="color-box" style="background: #eceff1;"></span>
+                    <span>Teknik Servis Yok</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="kds" class="page" style="display: none;">
+        <div class="content-header">
+            <h1>Karar Destek Sistemi</h1>
+        </div>
+        <div class="kds-container">
+            <div class="kpi-section">
+                <div class="kpi-row">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <h4>Servis Karşılama Oranı</h4>
+                            <button class="btn btn-link p-0 kpi-info-btn" 
+                                    data-kpi-id="servisKarsilama" 
+                                    onclick="showKPIDetail(this)">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                        <div class="kpi-content">
+                            <div class="kpi-value" id="servisKarsilamaOrani">-%</div>
+                            <div class="kpi-info-row">
+                                <div class="kpi-info-item">
+                                    <i class="fas fa-bullseye"></i>
+                                    <span>Hedef: +%120</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <h4>Servis Verimliliği</h4>
+                            <button class="btn btn-link p-0 kpi-info-btn" 
+                                    data-kpi-id="servisVerimlilik" 
+                                    onclick="showKPIDetail(this)">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                        <div class="kpi-content">
+                            <div class="kpi-value" id="servisVerimliligi">-%</div>
+                            <div class="kpi-info-row">
+                                <div class="kpi-info-item">
+                                    <i class="fas fa-bullseye"></i>
+                                    <span>Hedef: 300-400 araç/servis</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <h4>Kritik İl Sayısı</h4>
+                            <button class="btn btn-link p-0 kpi-info-btn" 
+                                    data-kpi-id="kritikIl" 
+                                    onclick="showKPIDetail(this)">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                        <div class="kpi-content">
+                            <div class="kpi-value" id="kritikIlSayisi">-</div>
+                            <div class="kpi-info-row">
+                                <div class="kpi-info-item">
+                                    <i class="fas fa-bullseye"></i>
+                                    <span>Hedef: 3 ve altı</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kds-card">
+                <div class="kds-card-header">
+                    <h4>
+                        Servis Planlama Simülasyonu
+                        <button class="btn btn-link p-0 kpi-info-btn" 
+                                data-kpi-id="servisSimulasyon" 
+                                onclick="showKPIDetail(this)">
+                            <i class="fas fa-info-circle"></i>
+                        </button>
+                    </h4>
+                </div>
+                <div class="kds-card-content">
+                    <div class="simulation-controls">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Bölge Seçimi</span>
+                            <select class="form-select" id="regionSelect">
+                                <option value="all" selected>Tüm Türkiye</option>
+                                <option value="Marmara">Marmara</option>
+                                <option value="Ege">Ege</option>
+                                <option value="İç Anadolu">İç Anadolu</option>
+                                <option value="Akdeniz">Akdeniz</option>
+                                <option value="Karadeniz">Karadeniz</option>
+                                <option value="Doğu Anadolu">Doğu Anadolu</option>
+                                <option value="Güneydoğu Anadolu">Güneydoğu Anadolu</option>
+                            </select>
+                            <span class="input-group-text">Açılacak Servis Sayısı</span>
+                            <input type="number" class="form-control" id="newServiceCount" min="1" value="1">
+                            <button class="btn btn-primary" onclick="runServiceSimulation()">
+                                <i class="fas fa-calculator"></i>
+                                Simülasyon Başlat
+                            </button>
+                        </div>
+                    </div>
+                    <div class="simulation-results">
+                        <div class="kds-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Öncelik</th>
+                                        <th>İl</th>
+                                        <th>Mevcut Servis</th>
+                                        <th>Araç Sayısı</th>
+                                        <th>Servis/Araç Oranı</th>
+                                        <th>Öneri Detayı</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="simulationResultsTable">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kds-card mt-4">
+                <div class="kds-card-header">
+                    <h4>
+                        Bölgesel Performans ve Kapasite Karşılaştırması
+                        <button class="btn btn-link p-0 kpi-info-btn" 
+                                data-kpi-id="bolgeKarsilastirma" 
+                                onclick="showKPIDetail(this)">
+                            <i class="fas fa-info-circle"></i>
+                        </button>
+                    </h4>
+                </div>
+                <div class="kds-card-content">
+                    <div class="kds-tabs">
+                        <div class="kds-tab active" data-tab="grafik">Grafik Analizi</div>
+                        <div class="kds-tab" data-tab="detay">Detaylı Analiz</div>
+                    </div>
+                    
+                    <div class="kds-tab-content active" data-tab="grafik">
+                        <div class="bolge-karsilastirma-controls">
+                            <div id="bolge-tickbar" class="bolge-tickbar"></div>
+                            <button id="karsilastir-btn" class="btn btn-primary">
+                                <i class="fas fa-chart-bar"></i>
+                                Karşılaştır
+                            </button>
+                        </div>
+                        <div id="karsilastirma-sonuclari">
+                            <div id="bolge-grafikleri"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="kds-tab-content" data-tab="detay">
+                        <div id="bolge-detaylari"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+  <div class="modal fade" id="yeniServisModal" tabindex="-1" aria-labelledby="yeniServisModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="yeniServisModalLabel">Yeni Teknik Servis Ekle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <form id="yeniServisForm">
+            <div class="mb-3">
+              <label for="servisAdi" class="form-label">Servis Adı</label>
+              <input type="text" class="form-control" id="servisAdi" required>
+            </div>
+            <div class="mb-3">
+              <label for="il" class="form-label">İl</label>
+              <select class="form-select" id="il" required>
+                <option value="">İl Seçiniz</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="ilce" class="form-label">İlçe</label>
+              <input type="text" class="form-control" id="ilce">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+          <button type="button" class="btn btn-primary" id="servisKaydet">Kaydet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="haritaModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Türkiye Teknik Servis Haritası</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+            <div class="modal-body">
+                <div id="buyuk-harita"></div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="analizHaritaModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">İl Bazlı Servis Analizi Haritası</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div id="buyuk-analiz-harita" class="fullscreen-map"></div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="kpiDetailModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="kpiDetailTitle">KPI Detayları</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+            </div>
+            <div class="modal-body">
+                <div class="kpi-detail-content">
+                    <div class="current-value">
+                        <h6>Mevcut Değer</h6>
+                        <div id="kpiCurrentValue">-</div>
+                    </div>
+                    <div class="target-value">
+                        <h6>Hedef Değer</h6>
+                        <div id="kpiTargetValue">-</div>
+                    </div>
+                    <div class="description mt-3">
+                        <h6>Açıklama</h6>
+                        <p id="kpiDescription">-</p>
+                    </div>
+                    <div class="recommendation mt-3">
+                        <h6>Öneriler</h6>
+                        <ul id="kpiRecommendations"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <script src="/js/kpi-calculations.js"></script>
+  <script src="/js/map.js"></script>
+  <script src="/js/analiz-harita.js"></script>
+  <script src="/js/dashboard.js"></script>
+  <script src="/js/kpi-details.js"></script>
+  <script src="/js/kds.js"></script>
+  <script src="/js/simulation.js"></script>
+</body>
+</html>

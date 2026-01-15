@@ -1,0 +1,89 @@
+/* Genel tablo stilleri */
+.table-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+/* Servis tabloları için özel stil */
+.servis-listesi .table-container,
+.servis-istatistikleri-container .table-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+/* DataTables özelleştirmeleri */
+.dataTables_wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* Responsive tasarım */
+@media (max-width: 1200px) {
+    .servis-listesi .table-container,
+    .servis-istatistikleri-container .table-container,
+    .dataTables_wrapper {
+        max-width: 100%;
+        padding: 1rem;
+    }
+}
+
+/* Tablo içeriği */
+.table {
+    width: 100% !important;
+    margin-bottom: 0;
+    table-layout: fixed;
+}
+
+/* Tablo başlıkları */
+.table thead th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    padding: 12px;
+    font-weight: 600;
+    text-align: left;
+    color: #495057;
+    white-space: nowrap;
+}
+
+/* Tablo hücreleri */
+.table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #dee2e6;
+    vertical-align: middle;
+}
+
+/* DataTables kontrolleri */
+.dataTables_length,
+.dataTables_filter {
+    margin-bottom: 1rem;
+}
+
+.dataTables_length select,
+.dataTables_filter input {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+
+/* Sayfalama kontrolleri */
+.dataTables_paginate {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Hücre içeriği taşma kontrolü */
+.table td, 
+.table th {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+} 

@@ -1,0 +1,65 @@
+/* Welcome page container */
+.welcome-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+/* Welcome içerik */
+.welcome-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Logo ve başlık */
+.welcome-logo {
+    width: 180px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.welcome-content h1 {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.welcome-content > p {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+}
+
+/* Welcome actions */
+.welcome-actions {
+    margin-top: 40px;
+    padding: 20px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .welcome-container {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .welcome-content h1 {
+        font-size: 2rem;
+    }
+
+    .welcome-content > p {
+        font-size: 1rem;
+    }
+
+    .welcome-logo {
+        width: 140px;
+    }
+} 
