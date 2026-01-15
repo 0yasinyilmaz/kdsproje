@@ -30,16 +30,9 @@ Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
     npm install
     ```
 
-3.  **Çevresel Değişkenleri Ayarlayın (.env):**
-    * Ana dizinde bulunan `.env.example` dosyasının adını `.env` olarak değiştirin.
-    * İçerisindeki veritabanı bağlantı bilgilerini ve port numarasını kendi sisteminize göre güncelleyin.
-    * *Not: `.env` dosyası güvenlik nedeniyle GitHub'a yüklenmemiştir.*
-
-4.  **Projeyi Başlatın:**
+3.  **Projeyi Başlatın:**
     ```bash
     npm start
-    # Veya geliştirme modunda:
-    npm run dev
     ```
 
 ---
