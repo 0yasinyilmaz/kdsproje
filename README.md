@@ -1,6 +1,4 @@
-# KDS_proje2026
-
-# KDS Proje - Chery Servis Ağı Yönetimi KDS
+## KDS Proje - Chery Servis Ağı Yönetimi KDS
 
 Bu proje, **Karar Destek Sistemleri** dersi kapsamında geliştirilmiş; MVC mimarisine dayalı, RESTful prensiplerine uygun bir backend uygulamasıdır.
 
